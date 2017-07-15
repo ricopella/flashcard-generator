@@ -12,14 +12,13 @@ function ClozeCard(text, cloze) {
         this.partial = "...";
         // property that contains _only_ the full text.
         this.fullText = text;
+        // method for creating the _partial_ text
         this.clozeDeletion = function() {
-            var dotCount = 0;
+            let dotCount = 0;
             // split full text into array of words
-            var arrFullText = this.fullText.split(" ");
-            // console.log(arrFullText);
+            let arrFullText = this.fullText.split(" ");
             // split cloze into array
-            var arrCloze = this.cloze.split(" ");
-            // console.log(arrCloze);
+            let arrCloze = this.cloze.split(" ");
 
             //  loop through fulltext for matching
             for (var i = 0; i < arrFullText.length; i++) {
@@ -45,5 +44,5 @@ function ClozeCard(text, cloze) {
     }
 }
 
-// export
+// export to app.js
 module.exports = ClozeCard;

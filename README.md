@@ -1,2 +1,43 @@
 # flashcard-generator
-A basic flashcard application
+
+
+### Overview
+
+This application is a simple flash card game where the user is prompted with a question. The answer to the question is replaced with `...`. This test method is **[Cloze Test](https://en.wikipedia.org/wiki/Cloze_test)** where it challenges the user to identify the correct words that belong in the text of the question.
+
+# Getting Started
+
+Follow these instructions to clone the project and run on your local drive.
+
+### Prerequisites
+
+You will need [Node.JS](https://www.npmjs.com/) installed on your system.
+
+### Installing
+
+1. Clone project: 
+
+        `git clone https://github.com/ricopella/flashcard-generator.git`
+
+2. Inside the root directory of the cloned filed, run the following command in your terminal/bash:
+
+        `npm install`
+
+# Commands to run application
+
+1.      `node app.js`
+    * This will start the quiz
+
+
+# Answers
+
+The questions & anwers are located in the answers.js file.
+
+# Demo
+
+Coming Soon.
+
+# Packages Used
+
+* [Node.JS](https://www.npmjs.com/)
+* [Colors](https://www.npmjs.com/package/colors)

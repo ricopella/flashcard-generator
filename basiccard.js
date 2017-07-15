@@ -12,5 +12,5 @@ function BasicCard(front, back) {
 }
 
 
-// export 
+// export to app.js
 module.exports = BasicCard;
