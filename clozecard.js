@@ -1,5 +1,3 @@
-const BasicCard = require('./basiccard');
-
 // For Testing
 // var questions = "George Washington was the first president of the United States.";
 // var answer = "George Washington";
@@ -46,14 +44,6 @@ function ClozeCard(text, cloze) {
         return new ClozeCard(text, cloze)
     }
 }
-
-// Create new object
-// var brokenCloze = new ClozeCard(questions, answer);
-var wutang = ClozeCard("Ol Dirty Bastard was the first Wu member to die", "Ol Dirty Bastard");
-var mobbdeep = ClozeCard("Prodigy was the first Mobb Deep artist to pass away", "Prodigy");
-
-console.log(wutang.clozeDeletion());
-console.log(mobbdeep.clozeDeletion());
 
 // export
 module.exports = ClozeCard;
