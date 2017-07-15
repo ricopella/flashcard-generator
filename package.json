@@ -1,0 +1,22 @@
+{
+  "name": "flashcard-generator",
+  "version": "0.0.1",
+  "description": "Flash Card Application",
+  "main": "answers.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricopella/flashcard-generator.git"
+  },
+  "author": "Narin Sundarabhaya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ricopella/flashcard-generator/issues"
+  },
+  "homepage": "https://github.com/ricopella/flashcard-generator#readme",
+  "dependencies": {
+    "colors": "^1.1.2"
+  }
+}

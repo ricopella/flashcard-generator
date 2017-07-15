@@ -1,7 +1,3 @@
-// For Testing
-// var questions = "George Washington was the first president of the United States.";
-// var answer = "George Washington";
-
 // constructor for creating cloze-deletion
 function ClozeCard(text, cloze) {
     // scope-safe
