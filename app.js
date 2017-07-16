@@ -75,7 +75,20 @@ function startGame() {
             // if no more questions
             console.log("");
             console.log(`Final Score: ${totalScore}`.yellow);
-            return;
+            // promt user if they'd like to play a new game
+            inquirer.prompt([{
+                name: "newgame",
+                message: "Would you like to play again?",
+                type: "confirm"
+            }]).then(function(answers) {
+                if (answers.newgame === true) {
+                    totalScore = 0;
+                    currentQuestion = 1;
+                    startGame()
+                } else {
+                    return false
+                }
+            })
         }
     })
 }
