@@ -17,19 +17,49 @@ function basicGame() {
     // create new object
     let FirstPresident = BasicCard(questions[0].text, questions[0].cloze);
 
+    console.log("\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n".magenta);
     inquirer.prompt([{
         name: "userguess",
         message: FirstPresident.front + "\nAnswer:",
         type: "input"
     }]).then(function(answers) {
         if (answers.userguess.toLowerCase() === FirstPresident.back.toLowerCase()) {
-            console.log("That's Correct!");
+            console.log("\nThat's Correct! Thank you for playing. Give the Cloze Quiz a try\n".green);
         } else {
-            console.log("That is incorrect.");
-            console.log(`Correct answer was ${FirstPresident.cloze}`);
+            console.log("\nThat is incorrect. Thank you for playing. Give the Cloze Quiz a try".red);
+            console.log(`The correct answer was ${FirstPresident.back}\n`);
         }
+        console.log("\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n".magenta);
+        inquirer.prompt([{
+            name: "newgame",
+            message: "Would you like to play again?",
+            type: "confirm"
+        }]).then(function(answers) {
+            if (answers.newgame === true) {
+                // reset score & counter / trigger new game
+                basicGame()
+            } else {
+                inquirer.prompt([{
+                    name: "newgame",
+                    message: "Would you like to try the cloze quiz?",
+                    type: "confirm"
+                }]).then(function(answers) {
+                    if (answers.newgame === true) {
+                        // reset score & counter / trigger new game
+                        startGame()
+                    } else {
+                        // exit
+                        return false
+                    }
+
+                })
+            }
+
+        })
     })
 }
+
+
 
 // ---------------- Cloze Card ---------------- //
 
