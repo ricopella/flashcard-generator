@@ -73,8 +73,8 @@ function startGame() {
             startGame();
         } else {
             // if no more questions
-            console.log("");
-            console.log(`Final Score: ${totalScore}`.yellow);
+            console.log(`\nFinal Score: ${totalScore}`.yellow + `\n`);
+
             // promt user if they'd like to play a new game
             inquirer.prompt([{
                 name: "newgame",
@@ -82,10 +82,12 @@ function startGame() {
                 type: "confirm"
             }]).then(function(answers) {
                 if (answers.newgame === true) {
+                    // reset score & counter / trigger new game
                     totalScore = 0;
                     currentQuestion = 1;
                     startGame()
                 } else {
+                    // exit
                     return false
                 }
             })
