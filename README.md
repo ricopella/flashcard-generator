@@ -52,7 +52,7 @@ The questions & anwers are located in the answers.js file.
 
 # Demo
 
-![Demo](http://gph.to/2t5sN9F)
+![Demo](https://media.giphy.com/media/HOCS6uYtQKXg4/giphy.gif)
 
 # Packages Used
 
