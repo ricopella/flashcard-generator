@@ -4,7 +4,6 @@
 
  =========================================================================================================== */
 
-
 const ClozeCard = require('./clozecard.js');
 const BasicCard = require('./basiccard');
 const questions = require('./answers.js');
@@ -32,7 +31,6 @@ function basicGame() {
     })
 }
 
-
 // ---------------- Cloze Card ---------------- //
 
 let totalScore = 0;
@@ -41,36 +39,40 @@ let currentQuestion = 1;
 function startGame() {
 
     // Create new obj for each question
-    let newQues = ClozeCard(questions[currentQuestion].text, questions[currentQuestion].cloze);
+    let newQues = ClozeCard(questions[currentQuestion].text, questions[currentQuestion].cloze, questions[currentQuestion].hint);
 
+    console.log("\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n".magenta);
     inquirer.prompt([{
         type: "input",
         name: "userguess",
-        message: newQues.partial + "\nAnswer:",
+        message: newQues.partial + "\nAnswer".blue + "(enter 'help' for a hint):".grey,
         validate: function(value) {
             // user must enter something
-            if (value.length < 1) {
-                return "Please enter an answer"
+            if (value === "help") {
+                return newQues.hint;
+            } else if (value.length < 1) {
+                return "Please enter an answer";
             } else {
                 return true;
             }
         }
     }]).then(function(answers) {
+        // If guessed correct
         if (answers.userguess.toLowerCase() === newQues.lowerCloze) {
-            console.log("Correct!".green);
-            console.log(newQues.fullText);
             currentQuestion++;
-            totalScore++
+            totalScore++;
+            console.log(`\nThat's CORRECT! You're awarded 1 point\nYour Score: ${totalScore}\n`.green);
+            // if guessed incorrect
         } else {
-            console.log("Wrong".red);
-            console.log(`The Correct Answer was: ${newQues.fullText}`);
             currentQuestion++;
-            totalScore--
+            totalScore--;
+            console.log(`\nSorry, that answer is INCORRECT.\nThe Correct Answer was: ${newQues.cloze}\nYou lose 1 point - Current Score: ${totalScore}\n`.red);
         }
         // recurssion until end of questions
         if (currentQuestion < questions.length) {
             startGame();
         } else {
+            // if no more questions
             console.log("");
             console.log(`Final Score: ${totalScore}`.yellow);
             return;

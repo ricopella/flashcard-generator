@@ -1,5 +1,5 @@
 // constructor for creating cloze-deletion
-function ClozeCard(text, cloze) {
+function ClozeCard(text, cloze, hint) {
     // scope-safe
     if (this instanceof ClozeCard) {
         // contains _only_ the cloze-deleted portion of the text.
@@ -15,10 +15,11 @@ function ClozeCard(text, cloze) {
         this.cloze = cloze;
         // property that contains _only_ the full text.
         this.fullText = text;
+        this.hint = hint;
         // replaces the cloze with ...
         this.partial = text.replace(cloze, "...")
     } else {
-        return new ClozeCard(text, cloze)
+        return new ClozeCard(text, cloze, hint)
     }
 }
 
