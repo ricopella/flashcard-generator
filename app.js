@@ -11,51 +11,71 @@ const inquirer = require('inquirer');
 const colors = require('colors');
 const process = require('process');
 
+let totalScore = 0;
+let curQuestion = 0;
+
+
 // ---------------- Basic Card ---------------- //
 
 function basicGame() {
     // create new object
-    let FirstPresident = BasicCard(questions[0].text, questions[0].cloze);
+    let newQues = BasicCard(questions[curQuestion].text, questions[curQuestion].cloze);
 
     console.log("\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n".magenta);
     inquirer.prompt([{
         name: "userguess",
-        message: FirstPresident.front + "\nAnswer:",
+        message: newQues.front + "\nAnswer:",
         type: "input"
     }]).then(function(answers) {
-        if (answers.userguess.toLowerCase() === FirstPresident.back.toLowerCase()) {
-            console.log("\nThat's Correct! Thank you for playing. Give the Cloze Quiz a try\n".green);
+        if (answers.userguess.toLowerCase() === newQues.back.toLowerCase()) {
+            console.log("\nThat's Correct! You're earned 1 Point!\n".green);
+            totalScore++;
+            curQuestion++;
         } else {
-            console.log("\nThat is incorrect. Thank you for playing. Give the Cloze Quiz a try".red);
-            console.log(`The correct answer was ${FirstPresident.back}\n`);
+            console.log("\nThat is incorrect. You've lost 1 point".red);
+            console.log(`The correct answer was ${newQues.back}\n`);
+            totalScore--;
+            curQuestion++;
         }
-        console.log("\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n".magenta);
-        inquirer.prompt([{
-            name: "newgame",
-            message: "Would you like to play again?",
-            type: "confirm"
-        }]).then(function(answers) {
-            if (answers.newgame === true) {
-                // reset score & counter / trigger new game
-                basicGame()
-            } else {
-                inquirer.prompt([{
-                    name: "newgame",
-                    message: "Would you like to try the cloze quiz?",
-                    type: "confirm"
-                }]).then(function(answers) {
-                    if (answers.newgame === true) {
-                        // reset score & counter / trigger new game
-                        startGame()
-                    } else {
-                        // exit
-                        return false
-                    }
 
-                })
-            }
+        if (curQuestion < 5) {
+            basicGame();
+        } else {
+            // if no more questions
+            console.log(`\nQuiz is Complete!\nFinal Score: ${totalScore}`.yellow + `\n`);
+            console.log("\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n".magenta);
+            inquirer.prompt([{
+                name: "newgame",
+                message: "Would you like to play again?",
+                type: "confirm"
+            }]).then(function(answers) {
+                if (answers.newgame === true) {
+                    // reset score & counter / trigger new game
+                    basicGame()
+                    totalScore = 0;
+                    curQuestion = 0;
+                } else {
+                    console.log("");
+                    inquirer.prompt([{
+                        name: "newgame",
+                        message: "Would you like to try the cloze quiz?",
+                        type: "confirm"
+                    }]).then(function(answers) {
+                        if (answers.newgame === true) {
+                            // reset score & counter / trigger new game
+                            startGame()
+                            totalScore = 0;
+                        } else {
+                            // exit
+                            return false
+                        }
 
-        })
+                    })
+                }
+
+            })
+        }
+
     })
 }
 
@@ -63,8 +83,7 @@ function basicGame() {
 
 // ---------------- Cloze Card ---------------- //
 
-let totalScore = 0;
-let currentQuestion = 1;
+let currentQuestion = 5;
 
 function startGame() {
 
@@ -114,7 +133,7 @@ function startGame() {
                 if (answers.newgame === true) {
                     // reset score & counter / trigger new game
                     totalScore = 0;
-                    currentQuestion = 1;
+                    currentQuestion = 5;
                     startGame()
                 } else {
                     // exit

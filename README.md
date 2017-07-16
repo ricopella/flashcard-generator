@@ -1,9 +1,21 @@
-# flashcard-generator
+# Flashcard Generator
 
 
 ### Overview
 
-This application is a simple flash card game where the user is prompted with a question. The answer to the question is replaced with `...`. This test method is **[Cloze Test](https://en.wikipedia.org/wiki/Cloze_test)** where it challenges the user to identify the correct words that belong in the text of the question.
+This application has two game options. Both games are based around Hip-Hop trivia quesitons.
+
+# Basic
+
+This version is a simple flash card game where the user is promted with a question and the user input's their guess. There are five total questions.
+
+# Cloze
+
+This version is similar to the `Basic` version where the user is prompted with a question. The difference is, the answers to the questions are replaced with `...`. 
+
+This test method is **[Cloze Test](https://en.wikipedia.org/wiki/Cloze_test)** where it challenges the user to identify the correct words that belong in the text of the question. There are 10 total questions.
+
+* Stuck? Don't worry, we've added **hint** feature (cloze only)!
 
 # Getting Started
 
@@ -40,7 +52,7 @@ The questions & anwers are located in the answers.js file.
 
 # Demo
 
-Coming Soon.
+![Demo](http://gph.to/2t5sN9F)
 
 # Packages Used
 
