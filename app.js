@@ -10,23 +10,30 @@ const BasicCard = require('./basiccard');
 const questions = require('./answers.js');
 const inquirer = require('inquirer');
 const colors = require('colors');
+const process = require('process');
 
 // ---------------- Basic Card ---------------- //
-// For Testing
 
-// create new object
-let FirstPresident = BasicCard(questions[0].text, questions[0].cloze);
+function basicGame() {
+    // create new object
+    let FirstPresident = BasicCard(questions[0].text, questions[0].cloze);
 
-// // Testing
-// console.log("\n-------------------");
-// console.log(FirstPresident.front);
-// console.log(FirstPresident.back);
-// console.log("-------------------\n");
-
+    inquirer.prompt([{
+        name: "userguess",
+        message: FirstPresident.front + "\nAnswer:",
+        type: "input"
+    }]).then(function(answers) {
+        if (answers.userguess.toLowerCase() === FirstPresident.back.toLowerCase()) {
+            console.log("That's Correct!");
+        } else {
+            console.log("That is incorrect.");
+            console.log(`Correct answer was ${FirstPresident.cloze}`);
+        }
+    })
+}
 
 
 // ---------------- Cloze Card ---------------- //
-// Create new obj
 
 let totalScore = 0;
 let currentQuestion = 1;
@@ -71,4 +78,6 @@ function startGame() {
     })
 }
 
-startGame()
+// decide which game the user would like to play based off the input
+const whichGame = process.argv[2];
+whichGame === "basic" ? basicGame() : startGame();

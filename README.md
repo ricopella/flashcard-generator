@@ -25,9 +25,14 @@ You will need [Node.JS](https://www.npmjs.com/) installed on your system.
 
 # Commands to run application
 
-1.      `node app.js`
-    * This will start the quiz
+1.      `node app.js basic`
+    * This will start the basic quiz with one question not in cloze-deletion format
 
+2.      `node app.js cloze`
+    * This will start the cloze-deletion quiz
+
+3.      `node app.js`
+    * Will default to cloze-deletion quiz
 
 # Answers
 
@@ -41,3 +46,4 @@ Coming Soon.
 
 * [Node.JS](https://www.npmjs.com/)
 * [Colors](https://www.npmjs.com/package/colors)
+* [Inquirer](https://www.npmjs.com/package/inquirer)
