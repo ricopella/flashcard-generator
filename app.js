@@ -9,46 +9,64 @@ const ClozeCard = require('./clozecard.js');
 const BasicCard = require('./basiccard');
 const questions = require('./answers.js');
 const inquirer = require('inquirer');
+const colors = require('colors');
 
 // ---------------- Basic Card ---------------- //
 // For Testing
 
 // create new object
-let firstPresident = BasicCard(questions[0].text, questions[0].cloze);
+let FirstPresident = BasicCard(questions[0].text, questions[0].cloze);
 
 // // Testing
 // console.log("\n-------------------");
-// console.log(firstPresident.front);
-// console.log(firstPresident.back);
+// console.log(FirstPresident.front);
+// console.log(FirstPresident.back);
 // console.log("-------------------\n");
 
 
 
 // ---------------- Cloze Card ---------------- //
-// Create new object
-
-let deathrow = ClozeCard(questions[1].text, questions[1].cloze);
-let big = ClozeCard(questions[2].text, questions[2].cloze);
-let atcq = ClozeCard(questions[3].text, questions[3].cloze);
-let jazzy = ClozeCard(questions[4].text, questions[4].cloze);
-let jay = ClozeCard(questions[5].text, questions[5].cloze);
-let tlc = ClozeCard(questions[6].text, questions[6].cloze);
+// Create new obj
 
 let totalScore = 0;
+let currentQuestion = 1;
 
 function startGame() {
+
+    // Create new obj for each question
+    let newQues = ClozeCard(questions[currentQuestion].text, questions[currentQuestion].cloze);
 
     inquirer.prompt([{
         type: "input",
         name: "userguess",
-        message: deathrow.partial + "\nAnswer:"
+        message: newQues.partial + "\nAnswer:",
+        validate: function(value) {
+            // user must enter something
+            if (value.length < 1) {
+                return "Please enter an answer"
+            } else {
+                return true;
+            }
+        }
     }]).then(function(answers) {
-        if (answers.deathrowq === deathrow.lowerCloze) {
-            console.log("Correct!");
-            console.log(deathrow.fullText);
+        if (answers.userguess.toLowerCase() === newQues.lowerCloze) {
+            console.log("Correct!".green);
+            console.log(newQues.fullText);
+            currentQuestion++;
+            totalScore++
         } else {
-            console.log("Wrong");
-            console.log(`The Correct Answer was: ${deathrow.fullText}`);
+            console.log("Wrong".red);
+            console.log(`The Correct Answer was: ${newQues.fullText}`);
+            currentQuestion++;
+            totalScore--
+        }
+        // recurssion until end of questions
+        if (currentQuestion < questions.length) {
+            startGame();
+        } else {
+            console.log("");
+            console.log(`Final Score: ${totalScore}`.yellow);
+            return;
         }
     })
 }

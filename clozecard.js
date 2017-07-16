@@ -3,11 +3,11 @@ function ClozeCard(text, cloze) {
     // scope-safe
     if (this instanceof ClozeCard) {
         // contains _only_ the cloze-deleted portion of the text.
-        var lowerfullText = text.toLowerCase();
-        var lowerCloze = cloze.toLowerCase();
+        this.lowerfullText = text.toLowerCase();
+        this.lowerCloze = cloze.toLowerCase();
 
         // log an error when the cloze deletion does _not_ appear in the input text
-        if (!lowerfullText.includes(lowerCloze)) {
+        if (!this.lowerfullText.includes(this.lowerCloze)) {
             console.log(`ERROR: ${cloze} does not appear within full text!`);
             return;
         }

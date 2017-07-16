@@ -18,7 +18,7 @@ let questions = [{
         cloze: "DJ Jazzy Jeff"
     },
     {
-        text: "Jay-Z sampled The World Is Yours for his song \"Dead Presidents\"",
+        text: "Jay-Z sampled Nas' song The World Is Yours for his song \"Dead Presidents\"",
         cloze: "The World Is Yours"
     },
     {
